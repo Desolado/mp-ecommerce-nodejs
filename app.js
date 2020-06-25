@@ -1,7 +1,7 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 const mercadopago = require('mercadopago');
-var logger = require('morgan');
+var morgan = require('morgan');
 
 var app = express();
 
@@ -12,7 +12,9 @@ mercadopago.configure({
 
 });
 
-app.use(logger('dev'));
+
+app.use(morgan('dev'));
+
 
 // Crea un objeto de preferencia
 let preference = null;
@@ -39,8 +41,8 @@ app.get('/pending', function(req, res) {
 
 app.post('/notification', function(req, res) {
 
-    console.log('req', req);
-    console.log('res', res)
+    console.log('req', req.query);
+    //console.log('res', res)
     res.sendStatus(200);
     //logger.write(JSON.stringify(res)) // append string to your file
 });
