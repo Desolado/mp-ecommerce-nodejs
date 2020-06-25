@@ -95,7 +95,7 @@ app.get('/detail', function(req, res) {
             }],
             installments: 6
         },
-        //notification_url: origin + "/notification",
+        notification_url: origin + "/notification",
         external_reference: 'ing.eperezcamacho@gmail.com'
     };
 
