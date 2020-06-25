@@ -40,11 +40,18 @@ app.get('/pending', function(req, res) {
 });
 
 app.post('/notification', function(req, res) {
-
-    console.log('NOTIFICACION WEBHOOK', JSON.stringify(req.query));
-    //console.log('res', res)
-    res.sendStatus(200);
-    //logger.write(JSON.stringify(res)) // append string to your file
+    if (req.method === "POST") {
+        let body = "";
+        req.on("data", chunk => {
+            body += chunk.toString();
+        });
+        req.on("end", () => {
+            console.log('DATA WEBHOOK BODY', body);
+            console.log('DATA WEBHOOK QUERY', req.query);
+            console.log('DATA WEBHOOK DATA', req.data);
+            res.status(200).send();
+        });
+    }
 });
 
 app.get('/detail', function(req, res) {
