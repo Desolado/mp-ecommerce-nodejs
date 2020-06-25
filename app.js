@@ -1,6 +1,7 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 const mercadopago = require('mercadopago');
+var logger = require('morgan');
 
 var app = express();
 
@@ -10,6 +11,8 @@ mercadopago.configure({
     integrator_id: 'dev_24c65fb163bf11ea96500242ac130004',
 
 });
+
+app.use(logger('dev'));
 
 // Crea un objeto de preferencia
 let preference = null;
@@ -23,7 +26,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/success', function(req, res) {
-    res.render('success');
+    res.render('success', req.query);
 });
 
 app.get('/failure', function(req, res) {
@@ -92,7 +95,7 @@ app.get('/detail', function(req, res) {
             }],
             installments: 6
         },
-        notification_url: origin + "/notification",
+        //notification_url: origin + "/notification",
         external_reference: 'ing.eperezcamacho@gmail.com'
     };
 
