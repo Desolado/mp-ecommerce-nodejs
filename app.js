@@ -97,7 +97,7 @@ app.get('/detail', function(req, res) {
             }],
             installments: 6
         },
-        notification_url: origin + "/notification",
+        //notification_url: origin + "/notification",
         external_reference: 'ing.eperezcamacho@gmail.com'
     };
 
@@ -110,7 +110,7 @@ app.post('/procesar-pago', function(req, res) {
     mercadopago.preferences.create(preference)
         .then(function(response) {
             // Este valor reemplazará el string "$$init_point$$" en tu HTML
-            console.log(response);
+            console.log('respuesta mercadopago', response.body);
             res.redirect(response.body.init_point);
         }).catch(function(error) {
             console.log(error);
