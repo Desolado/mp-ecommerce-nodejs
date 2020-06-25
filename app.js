@@ -41,7 +41,7 @@ app.get('/pending', function(req, res) {
 
 app.post('/notification', function(req, res) {
 
-    console.log('req', req.query);
+    console.log('NOTIFICACION WEBHOOK', JSON.stringify(req.query));
     //console.log('res', res)
     res.sendStatus(200);
     //logger.write(JSON.stringify(res)) // append string to your file
